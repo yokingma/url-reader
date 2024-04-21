@@ -2,6 +2,8 @@ import puppeteer, { type Browser } from 'puppeteer';
 import { Readability } from '@mozilla/readability';
 import { JSDOM } from 'jsdom';
 
+class URLReaderError extends Error {}
+
 interface IOptions {
   urls: string[]
   timeout: number
@@ -21,7 +23,7 @@ export class URLReader {
 
   constructor() {
     this.timeout = 60000;
-    this.browser = null;
+    this.browser = null
   }
 
   public async init() {
@@ -32,7 +34,7 @@ export class URLReader {
   public async read(options: IOptions) {
     const { urls, timeout } = options;
     const { browser, timeout: defaultTimeout } = this;
-    if (!browser) throw new Error('browser is null');
+    if (!browser) throw new URLReaderError('browser is null.');
     const results: IReaderResult[] = [];
     for (const url of urls) {
       const page = await browser.newPage();
