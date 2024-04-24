@@ -25,7 +25,7 @@
   "dependencies": {
     "@mozilla/readability": "^0.5.0",
     "jsdom": "^24.0.0",
-    "puppeteer": "^22.6.5"
+    "puppeteer": "^22.7.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.2",

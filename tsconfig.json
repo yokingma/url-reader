@@ -15,7 +15,8 @@
   },
   "include": [
     "src/**/*.ts",
-    "test/**/*.ts", "tsconfig.build.json",
+    "test/**/*.ts",
+    "tsconfig.build.json",
   ],
   "exclude": [
     "dist",
