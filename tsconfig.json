@@ -1,5 +1,4 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "module": "ES2022",
@@ -8,19 +7,21 @@
     "outDir": "dist",
     "noImplicitAny": true,
     "strict": true,
-    // "noEmit": true,
+    "noEmit": true,
     "typeRoots": [
       "node_modules/@types"
     ]
   },
   "include": [
     "src/**/*.ts",
-    "test/**/*.ts", "tsconfig.build.json",
+    "test/**/*.ts",
+    "tsconfig.build.json",
   ],
   "exclude": [
     "dist",
     "build",
     "node_modules",
-    "jest.config.js"
+    "jest.config.js",
+    "eslint.config.js"
   ]
 }
