@@ -2,28 +2,28 @@ import puppeteer, { type Browser } from 'puppeteer';
 import { Readability } from '@mozilla/readability';
 import { JSDOM } from 'jsdom';
 
-class URLReaderError extends Error {}
+class URLReaderError extends Error {};
 
 interface IOptions {
-  urls: string[]
-  timeout: number
+  urls: string[];
+  timeout: number;
 }
 
 interface IReaderResult {
-  title: string
-  content: string
-  length: number
-  textContent: string
-  excerpt: string
+  title: string;
+  content: string;
+  length: number;
+  textContent: string;
+  excerpt: string;
 }
 
 export class URLReader {
-  private browser: null | Browser
-  private timeout: number
+  private browser: null | Browser;
+  private timeout: number;
 
   constructor() {
     this.timeout = 60000;
-    this.browser = null
+    this.browser = null;
   }
 
   public async init() {
@@ -39,14 +39,14 @@ export class URLReader {
     for (const url of urls) {
       const page = await browser.newPage();
       const res = await page.goto(url, {
-        timeout: timeout || defaultTimeout
-      })
+        timeout: timeout || defaultTimeout,
+      });
 
       const txt = await res?.text();
       if (!txt) continue;
-  
+
       const doc = new JSDOM(txt, {
-        url
+        url,
       });
       const reader = new Readability(doc.window.document);
       const article = reader.parse();
@@ -56,11 +56,11 @@ export class URLReader {
           content: article.content,
           length: article.length,
           textContent: article.textContent,
-          excerpt: article.excerpt
-        })
+          excerpt: article.excerpt,
+        });
       }
 
-      await page.close()
+      await page.close();
     }
 
     return results;

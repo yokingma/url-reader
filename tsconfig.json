@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "./src",
     "declaration": true,
     "module": "ES2022",
     "moduleResolution": "node",
@@ -7,7 +8,7 @@
     "outDir": "dist",
     "noImplicitAny": true,
     "strict": true,
-    "noEmit": true,
+    "noEmit": false,
     "typeRoots": [
       "node_modules/@types"
     ]

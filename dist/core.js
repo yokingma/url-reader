@@ -1,6 +1,9 @@
 import puppeteer from 'puppeteer';
 import { Readability } from '@mozilla/readability';
 import { JSDOM } from 'jsdom';
+class URLReaderError extends Error {
+}
+;
 export class URLReader {
     browser;
     timeout;
@@ -17,18 +20,18 @@ export class URLReader {
         const { urls, timeout } = options;
         const { browser, timeout: defaultTimeout } = this;
         if (!browser)
-            throw new Error('browser is null');
+            throw new URLReaderError('browser is null.');
         const results = [];
         for (const url of urls) {
             const page = await browser.newPage();
             const res = await page.goto(url, {
-                timeout: timeout || defaultTimeout
+                timeout: timeout || defaultTimeout,
             });
             const txt = await res?.text();
             if (!txt)
                 continue;
             const doc = new JSDOM(txt, {
-                url
+                url,
             });
             const reader = new Readability(doc.window.document);
             const article = reader.parse();
@@ -38,7 +41,7 @@ export class URLReader {
                     content: article.content,
                     length: article.length,
                     textContent: article.textContent,
-                    excerpt: article.excerpt
+                    excerpt: article.excerpt,
                 });
             }
             await page.close();
