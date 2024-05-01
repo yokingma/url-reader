@@ -1,5 +1,5 @@
 import Fastify from 'fastify';
-import URLReader from './core';
+import { URLReader } from './core.js';
 import { IRequestOptions } from './interface';
 
 const PORT = 3030;

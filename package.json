@@ -5,6 +5,7 @@
     "puppeteer",
     "url",
     "url-reader",
+    "urlReader",
     "json",
     "html",
     "markdown",
