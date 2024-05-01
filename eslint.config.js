@@ -25,7 +25,8 @@ export default tseslint.config(
       '@stylistic': stylistic
     },
     rules: {
-      '@typescript-eslint/require-await': 'off'
+      '@typescript-eslint/require-await': 'off',
+      '@typescript-eslint/no-floating-promises': 'off',
     }
   },
   {

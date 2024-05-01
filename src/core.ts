@@ -1,29 +1,20 @@
+import { JSDOM } from 'jsdom';
+import Turndown from 'turndown';
 import puppeteer, { type Browser } from 'puppeteer';
 import { Readability } from '@mozilla/readability';
-import { JSDOM } from 'jsdom';
+import { IOptions, IReaderResult } from './interface';
 
 class URLReaderError extends Error {};
-
-interface IOptions {
-  urls: string[];
-  timeout: number;
-}
-
-interface IReaderResult {
-  title: string;
-  content: string;
-  length: number;
-  textContent: string;
-  excerpt: string;
-}
 
 export class URLReader {
   private browser: null | Browser;
   private timeout: number;
+  private turndown: Turndown;
 
   constructor() {
     this.timeout = 60000;
     this.browser = null;
+    this.turndown = new Turndown();
   }
 
   public async init() {
@@ -39,7 +30,7 @@ export class URLReader {
     for (const url of urls) {
       const page = await browser.newPage();
       const res = await page.goto(url, {
-        timeout: timeout || defaultTimeout,
+        timeout: timeout ?? defaultTimeout,
       });
 
       const txt = await res?.text();
@@ -48,14 +39,15 @@ export class URLReader {
       const doc = new JSDOM(txt, {
         url,
       });
-      const reader = new Readability(doc.window.document);
-      const article = reader.parse();
+      const article = await this.readDoc(doc.window.document);
+      const markdown = await this.html2md(article?.content ?? '');
       if (article) {
         results.push({
-          title: article.title,
-          content: article.content,
           length: article.length,
-          textContent: article.textContent,
+          title: article.title,
+          html: article.content,
+          text: article.textContent,
+          markdown,
           excerpt: article.excerpt,
         });
       }
@@ -65,4 +57,16 @@ export class URLReader {
 
     return results;
   }
+
+  private async readDoc(doc: Document) {
+    const reader = new Readability(doc);
+    return reader.parse();
+  }
+
+  private async html2md(html: string) {
+    if (!html) return '';
+    return this.turndown?.turndown(html);
+  }
 }
+
+export default URLReader;
