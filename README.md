@@ -62,6 +62,10 @@ POST /reader
 
 ## Docker
 
+```bash
+docker build -t urlreader .
+```
+
 ## Tips
 
 - puppeteer
