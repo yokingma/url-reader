@@ -5,7 +5,7 @@ COPY . /app
 WORKDIR /app
 RUN yarn install && yarn run build
 
-FROM node:21-alpine
+FROM node:21
 
 WORKDIR /app
 
