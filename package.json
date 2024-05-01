@@ -1,5 +1,5 @@
 {
-  "name": "url-reader",
+  "name": "urlreader",
   "description": "Convert your URLs to JSON/Markdown/Text format.",
   "keywords": [
     "puppeteer",
@@ -16,7 +16,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "run": "node ./dist/app.js",
+    "start": "node ./dist/app.js",
     "dev": "nodemon --exec tsx ./src/app.ts",
     "build": "tsc --project tsconfig.build.json --outDir dist/",
     "lint": "yarn eslint .",

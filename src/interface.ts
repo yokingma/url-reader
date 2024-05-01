@@ -1,5 +1,6 @@
 export interface IOptions {
   urls: string[];
+  enableMarkdown?: boolean;
   timeout?: number;
 }
 

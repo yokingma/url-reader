@@ -23,7 +23,7 @@ export class URLReader {
   }
 
   public async read(options: IOptions) {
-    const { urls, timeout } = options;
+    const { urls, timeout, enableMarkdown = true } = options;
     const { browser, timeout: defaultTimeout } = this;
     if (!browser) throw new URLReaderError('browser is null.');
     const results: IReaderResult[] = [];
@@ -40,7 +40,8 @@ export class URLReader {
         url,
       });
       const article = await this.readDoc(doc.window.document);
-      const markdown = await this.html2md(article?.content ?? '');
+      let markdown = '';
+      if (enableMarkdown) markdown = await this.html2md(article?.content ?? '');
       if (article) {
         results.push({
           length: article.length,
