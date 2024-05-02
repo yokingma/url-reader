@@ -69,6 +69,8 @@ POST /reader
 docker build -t urlreader . # urlreader is your image's tag name
 ```
 
+The service will listen on port ```3030```.
+
 ## Tips
 
 - puppeteer
