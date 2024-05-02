@@ -17,7 +17,9 @@ export class URLReader {
     async init() {
         if (this.browser)
             return;
-        this.browser = await puppeteer.launch();
+        this.browser = await puppeteer.launch({
+            headless: true,
+        });
     }
     async read(options) {
         const { urls, timeout, enableMarkdown = true } = options;
