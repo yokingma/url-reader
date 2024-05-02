@@ -19,7 +19,10 @@ app.get('/', async (req, reply) => {
 app.get('/reader', async (req, reply) => {
   const { url } = req.query as IRequestOptions;
   if (!url) return [];
-  const res = await reader.read({ urls: [url] });
+  const res = await reader.read({
+    urls: [url],
+    runScripts: 'dangerously',
+  });
   reply.type('application/json').code(200);
   return res;
 });
@@ -28,7 +31,10 @@ app.post('/reader', async (req, reply) => {
   const { urls = [], url } = req.body as IRequestOptions;
   if (!urls && !url) return [];
   if (url) urls.push(url);
-  const res = await reader.read({ urls });
+  const res = await reader.read({
+    urls,
+    runScripts: 'dangerously',
+  });
   reply.type('application/json').code(200);
   return res;
 });
