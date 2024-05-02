@@ -63,7 +63,7 @@ POST /reader
 ## Docker
 
 ```bash
-docker build -t urlreader .
+docker build -t urlreader . # urlreader is your image's tag name
 ```
 
 ## Tips
