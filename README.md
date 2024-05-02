@@ -7,7 +7,7 @@ This project helps you to read the content of URLs, and return the title, length
 ## Installation
 
 ```bash
-yarn install url-reader
+yarn add url-reader
 # or npm install url-reader
 ```
 
