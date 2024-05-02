@@ -45,7 +45,7 @@ interface IReaderResult {
 * start server
 
 ```bash
-git clone https://github.com/yokingma/urlReader.git
+git clone https://github.com/yokingma/url-reader.git
 cd urlReader
 
 # default listen on port 3030
