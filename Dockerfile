@@ -23,14 +23,14 @@ RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
     && chown -R pptruser:pptruser /home/pptruser \
     && chown -R pptruser:pptruser /app
 
-# Run everything after as non-privileged user.
-USER pptruser
-
 COPY . /app
 
 WORKDIR /app
 
 RUN yarn install --production && yarn cache clean
+
+# Run everything after as non-privileged user.
+USER pptruser
 
 EXPOSE 3030
 CMD yarn run start

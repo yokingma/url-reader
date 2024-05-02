@@ -25,7 +25,7 @@ export class URLReader {
   }
 
   public async read(options: IOptions) {
-    const { urls, timeout, enableMarkdown = true } = options;
+    const { urls, timeout, enableMarkdown = true, runScripts } = options;
     const { browser, timeout: defaultTimeout } = this;
     if (!browser) throw new URLReaderError('browser is null.');
     const results: IReaderResult[] = [];
@@ -34,12 +34,12 @@ export class URLReader {
       const res = await page.goto(url, {
         timeout: timeout ?? defaultTimeout,
       });
-
       const txt = await res?.text();
       if (!txt) continue;
 
       const doc = new JSDOM(txt, {
         url,
+        runScripts,
       });
       const article = await this.readDoc(doc.window.document);
       let markdown = '';

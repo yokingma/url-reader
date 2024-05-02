@@ -1,6 +1,7 @@
 export interface IOptions {
   urls: string[];
   enableMarkdown?: boolean;
+  runScripts?: 'dangerously' | 'outside-only';
   timeout?: number;
 }
 
