@@ -19,7 +19,9 @@ export class URLReader {
 
   public async init() {
     if (this.browser) return;
-    this.browser = await puppeteer.launch();
+    this.browser = await puppeteer.launch({
+      headless: true,
+    });
   }
 
   public async read(options: IOptions) {
