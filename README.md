@@ -49,7 +49,7 @@ git clone https://github.com/yokingma/url-reader.git
 cd urlReader
 
 # default listen on port 3030
-yarn run start
+yarn install & yarn run start
 ```
 
 * api
@@ -58,6 +58,7 @@ yarn run start
 GET /reader?url=https://www.google.com
 
 POST /reader
+Body:
 {
   urls: ['https://www.google.com', 'https://www.bing.com']
 }
