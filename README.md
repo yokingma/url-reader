@@ -7,14 +7,14 @@ This project helps you to read the content of URLs, and return the title, length
 ## Installation
 
 ```bash
-yarn install urlreader
-# or npm install urlreader
+yarn install url-reader
+# or npm install url-reader
 ```
 
 ## Usage
 
 ```ts
-import URLReader from 'urlreader';
+import URLReader from 'url-reader';
 
 const reader = new URLReader();
 await reader.init();
@@ -46,7 +46,7 @@ interface IReaderResult {
 
 ```bash
 git clone https://github.com/yokingma/url-reader.git
-cd urlReader
+cd url-reader
 
 # default listen on port 3030
 yarn install & yarn run start
