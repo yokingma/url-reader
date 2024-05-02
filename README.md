@@ -23,8 +23,11 @@ const results = await reader.read({
   urls: ['https://www.google.com'],
   timeout: 10000, // ms, default: 60000
   enableMarkdown: false, // default: true
+  runScripts: 'dangerously', // run the scripts included in the HTML and fetch remote resources, default is closed.
 });
 ```
+
+Parsed Result:
 
 ```ts
 interface IReaderResult {
